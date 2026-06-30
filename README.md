@@ -17,7 +17,10 @@
 
 ## 🚀 Live Demo
 
-🟢 https://arjundroid12.github.io/todo-drag-drop/
+| Host | URL | Notes |
+|------|-----|-------|
+| 🥇 Surge.sh | https://arjun-kanban.surge.sh | Bangalore edge — best for India |
+| 🥈 GitHub Pages | https://arjundroid12.github.io/todo-drag-drop/ | May be blocked by some Indian ISPs |
 
 ## 🛠️ Tech Stack
 
