@@ -1,0 +1,94 @@
+:root {
+  --bg: #0f172a; --bg-elev: #1e293b; --bg-elev-2: #334155;
+  --fg: #f1f5f9; --fg-muted: #94a3b8; --accent: #6366f1;
+  --danger: #ef4444; --success: #10b981; --warning: #f59e0b;
+  --border: rgba(148,163,184,.15); --shadow: 0 20px 50px rgba(0,0,0,.3);
+  --radius: 12px; --radius-sm: 8px; --transition: 150ms;
+}
+[data-theme="light"] {
+  --bg: #f8fafc; --bg-elev: #fff; --bg-elev-2: #e2e8f0;
+  --fg: #0f172a; --fg-muted: #475569; --border: rgba(15,23,42,.08);
+  --shadow: 0 10px 30px rgba(15,23,42,.08);
+}
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background: var(--bg); color: var(--fg); min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  transition: background var(--transition);
+}
+.app { max-width: 1200px; margin: 0 auto; padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+.app__header { display: flex; align-items: center; justify-content: space-between; }
+.app__header h1 { font-size: 1.5rem; }
+.icon-btn {
+  width: 36px; height: 36px; display: grid; place-items: center;
+  background: var(--bg-elev-2); border: 1px solid var(--border);
+  border-radius: 50%; cursor: pointer; font-size: 1rem;
+}
+.add-form { display: flex; gap: 8px; flex-wrap: wrap; }
+.add-form input[type="text"] { flex: 1; min-width: 200px; }
+.add-form input, .add-form select {
+  font-family: inherit; font-size: .9rem; padding: 10px 12px;
+  background: var(--bg-elev); color: var(--fg);
+  border: 1px solid var(--border); border-radius: var(--radius-sm); outline: none;
+}
+.add-form input:focus, .add-form select:focus { border-color: var(--accent); }
+.add-form button {
+  font-family: inherit; font-size: .9rem; font-weight: 600;
+  padding: 10px 16px; background: var(--accent); color: #fff;
+  border: none; border-radius: var(--radius-sm); cursor: pointer;
+}
+.add-form button:hover { background: #4f46e5; }
+.stats {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  color: var(--fg-muted); font-size: .85rem;
+}
+.stat-pill {
+  background: var(--bg-elev); padding: 6px 12px; border-radius: 999px;
+  border: 1px solid var(--border);
+}
+.stat-pill strong { color: var(--fg); }
+.board {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+}
+@media (max-width: 768px) { .board { grid-template-columns: 1fr; } }
+.column {
+  background: var(--bg-elev); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px; min-height: 200px;
+}
+.column header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border);
+}
+.column h2 { font-size: .95rem; font-weight: 600; }
+.count {
+  background: var(--bg-elev-2); color: var(--fg-muted);
+  padding: 2px 8px; border-radius: 999px; font-size: .75rem; font-weight: 600;
+}
+.column__body { min-height: 100px; display: flex; flex-direction: column; gap: 8px; }
+.column__body.drag-over {
+  background: var(--accent-soft, rgba(99,102,241,.1));
+  outline: 2px dashed var(--accent); outline-offset: -4px; border-radius: var(--radius-sm);
+}
+.task {
+  background: var(--bg-elev-2); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 10px 12px;
+  cursor: grab; transition: transform var(--transition), opacity var(--transition);
+}
+.task:hover { transform: translateY(-1px); }
+.task:active { cursor: grabbing; }
+.task.dragging { opacity: .4; transform: rotate(2deg); }
+.task.priority-high { border-left: 3px solid var(--danger); }
+.task.priority-medium { border-left: 3px solid var(--warning); }
+.task.priority-low { border-left: 3px solid var(--success); }
+.task__text { font-size: .9rem; line-height: 1.4; margin-bottom: 6px; word-wrap: break-word; }
+.task__meta { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.task__due { font-size: .72rem; color: var(--fg-muted); }
+.task__due.overdue { color: var(--danger); }
+.task__actions { display: flex; gap: 4px; }
+.task__actions button {
+  background: transparent; border: none; cursor: pointer;
+  color: var(--fg-muted); font-size: .9rem; padding: 2px 6px; border-radius: 4px;
+}
+.task__actions button:hover { background: var(--bg-elev); color: var(--fg); }
+.task__actions .delete:hover { color: var(--danger); }

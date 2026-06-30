@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Todo · Kanban with Drag & Drop</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body>
+<main class="app">
+  <header class="app__header">
+    <h1>📋 Kanban Todo</h1>
+    <button id="themeToggle" class="icon-btn" type="button">🌙</button>
+  </header>
+
+  <form id="addForm" class="add-form">
+    <input id="taskInput" type="text" placeholder="Add a task..." autocomplete="off" required>
+    <select id="prioritySelect">
+      <option value="low">🟢 Low</option>
+      <option value="medium" selected>🟡 Medium</option>
+      <option value="high">🔴 High</option>
+    </select>
+    <input id="dueInput" type="date">
+    <button type="submit">+ Add</button>
+  </form>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="board" id="board">
+    <div class="column" data-status="todo">
+      <header><h2>📥 To Do</h2><span class="count" id="count-todo">0</span></header>
+      <div class="column__body" data-dropzone="todo"></div>
+    </div>
+    <div class="column" data-status="progress">
+      <header><h2>🔨 In Progress</h2><span class="count" id="count-progress">0</span></header>
+      <div class="column__body" data-dropzone="progress"></div>
+    </div>
+    <div class="column" data-status="done">
+      <header><h2>✅ Done</h2><span class="count" id="count-done">0</span></header>
+      <div class="column__body" data-dropzone="done"></div>
+    </div>
+  </div>
+</main>
+<script src="./assets/app.js"></script>
+</body>
+</html>
